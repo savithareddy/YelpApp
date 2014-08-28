@@ -8,22 +8,48 @@
 
 #import "YPAAppDelegate.h"
 #import "YPAMainVC.h"
+#import <SpeechKit/SpeechKit.h>
+#import  <AVFoundation/AVFoundation.h>
+#import "YPATableCustomVC.h"
+
 
 @implementation YPAAppDelegate
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     YPAMainVC *mainVC = [[YPAMainVC alloc] init];
+//    YPATableCustomVC *tableVC = [[YPATableCustomVC alloc] init];
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:mainVC];
     self.window.rootViewController = navVC;
     self.window.backgroundColor = [UIColor whiteColor];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
 
+-(void) setupSpeechKitConnection
+{
+[SpeechKit setupWithID:@"NMDPTRIAL_reddysavi20140824102558"
+                  host:@"sandbox.nmdp.nuancemobility.net"
+                  port:443
+                useSSL:NO
+              delegate:nil];
+    
+    SKEarcon *earconStart = [SKEarcon earconWithName:@"earcon_listening.wav"];
+    SKEarcon *earconStop = [SKEarcon earconWithName:@"earcon_done_listening.wav"];
+    SKEarcon *earconCancel = [SKEarcon earconWithName:@"earcon_cancel.wav"];
+    
+    [SpeechKit setEarcon:earconStart forType:SKStartRecordingEarconType];
+    [SpeechKit setEarcon:earconStop forType:SKStopRecordingEarconType];
+    [SpeechKit setEarcon:earconCancel forType:SKCancelRecordingEarconType];
+}
 
-
+-(void) userCurrentLocation
+{
+    
+}
 
 
 
