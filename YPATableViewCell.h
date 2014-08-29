@@ -10,4 +10,6 @@
 
 @interface YPATableViewCell : UITableViewCell
 
+@property (nonatomic) NSDictionary *info;
+
 @end

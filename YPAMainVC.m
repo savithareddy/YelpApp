@@ -11,11 +11,13 @@
 #import "YPAAppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 #import  <AVFoundation/AVFoundation.h>
-#import "YPATableCustomVC.h"
+//#import "YPATableCustomVC.h"
 #import <QuartzCore/QuartzCore.h>
+#import "YPAYelpRequest.h"
+#import "YPATableViewCell.h"
 
 
-@interface YPAMainVC () <SpeechKitDelegate,SKRecognizerDelegate,CLLocationManagerDelegate>
+@interface YPAMainVC () <SpeechKitDelegate,SKRecognizerDelegate,CLLocationManagerDelegate,YPAYelpRequestDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic) SKRecognizer *SpeechRecognizer;
 @property (nonatomic) UIActivityIndicatorView *activityIndicator;
@@ -31,7 +33,10 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     UILabel *recordText;
     CLLocationManager *lManager;
     CLLocation *currentLocation;
-    YPATableCustomVC *customTable;
+//    YPATableCustomVC *customTable;
+    YPAYelpRequest *yelpRequest;
+    UITableView *customTableView;
+    NSArray *tableArray;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -39,6 +44,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
+        self.view.backgroundColor = [UIColor clearColor];
         self.navigationItem.title = @"Nearby Restaurants";
         textConvert = [[UITextField alloc] initWithFrame:CGRectMake(20, 80, 240, 40)];
         textConvert.borderStyle = UIBarButtonItemStyleDone;
@@ -67,15 +73,48 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
         lManager = [[CLLocationManager alloc] init];
         lManager.delegate = self;
         [lManager startUpdatingLocation];
+        
+        customTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 160, 320, SCREEN_HEIGHT-160) style:UITableViewStylePlain];
+        customTableView.delegate = self;
+        customTableView.dataSource = self;
+        customTableView.rowHeight = 65;
+        customTableView.separatorColor = [UIColor clearColor];
+        customTableView.sectionFooterHeight = 22;
+        customTableView.sectionHeaderHeight = 22;
+        customTableView.scrollEnabled = YES;
+        customTableView.showsVerticalScrollIndicator = YES;
+        //        customTableView.userInteractionEnabled = YES;
+        customTableView.bounces = YES;
+        [self.view addSubview:customTableView];
+
        
     }
     return self;
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [tableArray count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YPATableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier"];
+    if (cell == nil) {
+        cell = [[YPATableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellIdentifier"];
+    }
+    //    cell.textLabel.text = tableArray[indexPath.row];
+    cell.info = tableArray[indexPath.row];
+    
+    return cell;
+}
+
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     currentLocation= [locations firstObject];
     NSLog(@"current location is %@",currentLocation);
+    [lManager stopUpdatingLocation];
 }
 
 
@@ -83,14 +122,14 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
 {
     [super viewDidLoad];
     
-//   self.activityIndicator.hidden = YES;
+   self.activityIndicator.hidden = YES;
     YPAAppDelegate *appDel  = [UIApplication sharedApplication].delegate;
     [appDel setupSpeechKitConnection];
     textConvert.returnKeyType = UIReturnKeySearch;
     
-    customTable = [[YPATableCustomVC alloc] init];
-    customTable.view.frame = CGRectMake(0, 160, SCREEN_WIDTH, SCREEN_HEIGHT-160);
-    [self.view addSubview:customTable.view];
+//    customTable = [[YPATableCustomVC alloc] init];
+//    customTable.view.frame = CGRectMake(0, 160, SCREEN_WIDTH, SCREEN_HEIGHT-160);
+//    [self.view addSubview:customTable.view];
 }
 
 -(void) startRecording : (UIButton *) sender
@@ -116,6 +155,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
 {
     recordText.text = @"Done Listening ..";
 }
+
 -(void)recognizer:(SKRecognizer *)recognizer didFinishWithResults:(SKRecognition *)results
 {
     long numberOfResults = [results.results count];
@@ -123,10 +163,14 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
         textConvert.text = [results firstResult];
     }
     micButton.selected = !micButton.selected;
+    NSString *yelpSearchString = [self getYelpCategoryFromSearchText];
+    [self findNearbyRestaurantsWithYelp:yelpSearchString];
+    
     if (self.SpeechRecognizer) {
         [self.SpeechRecognizer cancel];
     }
     recordText.text = @"Tap mic to start recording";
+    
 }
 
 -(void)recognizer:(SKRecognizer *)recognizer didFinishWithError:(NSError *)error suggestion:(NSString *)suggestion
@@ -138,6 +182,60 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     [alert show];
 }
 
+-(NSString *) getYelpCategoryFromSearchText
+{
+    NSString *categoryFilter;
+    if ([[textConvert.text componentsSeparatedByString:@"restaurant"] count] > 1) {
+        NSCharacterSet *separator = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+        NSArray *trimmedWordArray =  [[[textConvert.text componentsSeparatedByString:@"restaurant"] firstObject] componentsSeparatedByCharactersInSet:separator];
+        if ([trimmedWordArray count] > 2) {
+            int objectIndex = (int) [trimmedWordArray count] -2;
+            categoryFilter = [trimmedWordArray objectAtIndex:objectIndex];
+        }else{
+            categoryFilter = [trimmedWordArray objectAtIndex:0];
+        }
+    }else if (([[textConvert.text componentsSeparatedByString:@"restaurant"] count] <=1)  && textConvert.text && textConvert.text.length > 0)
+    {
+        categoryFilter = textConvert.text;
+    }
+    return categoryFilter;
+}
+
+-(void) findNearbyRestaurantsWithYelp : (NSString *) categoryFilter
+{
+    if (categoryFilter && categoryFilter.length > 0) {
+        if (([CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) && currentLocation && currentLocation.coordinate.latitude)
+    {
+        recordText.text = @" Fetching results..";
+        self.activityIndicator.hidden = NO;
+        
+        yelpRequest = [[YPAYelpRequest alloc] init];
+        yelpRequest.delegate = self;
+        [yelpRequest searchYelpNearbyPlaces:[categoryFilter lowercaseString]  atLatitude:currentLocation.coordinate.latitude atLongitude:currentLocation.coordinate.longitude];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location is Disabled"
+                                                            message:@"Enable it in settings and try again"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+}
+
+-(void)loadResultWithDataArray:(NSArray *)dataArray
+{
+    recordText.text = @" Tap on the mic";
+    self.activityIndicator.hidden = YES;
+    
+    tableArray = [dataArray mutableCopy];
+    [customTableView reloadData];
+//    [self.delegate arrayFromMainVC:dataArray];
+//    self.arrayFromMainVC = [dataArray mutableCopy];
+//    NSLog(@"array in main Vc is %@", self.arrayFromMainVC);
+
+}
 
 
 

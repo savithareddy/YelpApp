@@ -8,6 +8,8 @@
 
 #import "YPATableCustomVC.h"
 #import "YPATableViewCell.h"
+#import "YPAYelpRequest.h"
+#import "YPAMainVC.h"
 
 @interface YPATableCustomVC ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -17,6 +19,7 @@
 {
     NSArray *tableArray;
     UITableView *customTableView;
+    YPAMainVC *mainVC;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,10 +40,39 @@
         customTableView.bounces = YES;
         [self.view addSubview:customTableView];
         
-        tableArray = @[@"hello",@"hello1",@"hello3",@"hello",@"hello1",@"hello3",@"hello",@"hello1",@"hello3",@"hello",@"hello1",@"hello3"];
+//        tableArray = @[@"hello",@"hello1",@"hello3",@"hello",@"hello1",@"hello3",@"hello",@"hello1",@"hello3",@"hello",@"hello1",@"hello3"];
+//         mainVC= [[YPAMainVC alloc] init];
+//        mainVC.delegate = self;
+        
+        
+//        YPAYelpRequest *request = [[YPAYelpRequest alloc] init];
+//        request.delegate = self;
+//        NSLog(@" array in the table view is %@",tableArray);
     }
     return self;
 }
+
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    tableArray = mainVC.arrayFromMainVC;
+//    NSLog(@"Array at the table Vc is %@ ",tableArray);
+//    [customTableView reloadData];
+//}
+
+-(void)arrayFromMainVC:(NSArray *)arrayTable
+{
+    tableArray = arrayTable;
+    NSLog(@"Array at the table Vc is %@ ",tableArray);
+    [customTableView reloadData];
+}
+
+//-(void)loadResultWithDataArray:(NSArray *)dataArray
+//{
+//    tableArray = [dataArray mutableCopy];
+//    NSLog(@"Array at the table Vc is %@ ",tableArray);
+//    [customTableView reloadData];
+//}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -53,24 +85,11 @@
     if (cell == nil) {
         cell = [[YPATableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellIdentifier"];
     }
-    cell.textLabel.text = tableArray[indexPath.row];
-//    cell.separatorInset = UIEdgeInsetsMake(0, 0, 10, 0);
-//    cell.backgroundColor = [UIColor lightGrayColor];
-//    cell.alpha = 0.5;
+//    cell.textLabel.text = tableArray[indexPath.row];
+    cell.info = tableArray[indexPath.row];
+    
     return cell;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

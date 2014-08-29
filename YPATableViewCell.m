@@ -9,6 +9,13 @@
 #import "YPATableViewCell.h"
 
 @implementation YPATableViewCell
+{
+    UIImageView *restaurantImage;
+    UILabel *restaurantName;
+    UIImageView *restaurantRating;
+    UILabel *restaurantAddress;
+    UIImageView *frontArrow;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -16,13 +23,76 @@
     if (self) {
         UIView *viewCell = [[UIView alloc] initWithFrame:CGRectMake(10, 5, SCREEN_WIDTH-20, 60)];
         viewCell.backgroundColor = [UIColor lightGrayColor];
-        viewCell.alpha = 0.5;
+//        viewCell.alpha = 0.5;
         viewCell.layer.cornerRadius = 5;
         [self.contentView addSubview:viewCell];
+        
+        restaurantImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 50, 50)];
+//        restaurantImage.layer.cornerRadius = 27.5;
+//        restaurantImage.image = [UIImage imageNamed:@"mic"];
+        restaurantImage.clipsToBounds = YES;
+        [viewCell addSubview:restaurantImage];
+        
+        restaurantName = [[UILabel alloc] initWithFrame:CGRectMake(65, 10, 200, 15)];
+        [restaurantName setFont:[UIFont fontWithName:@"Arial" size:15.0f]];
+        restaurantName.textColor = [UIColor blueColor];
+//        restaurantName.text = @"Restaurant";
+        [viewCell addSubview:restaurantName];
+        
+        restaurantRating = [[UIImageView alloc] initWithFrame:CGRectMake(65, 27, 50, 12)];
+//        [restaurantRating setFont:[UIFont fontWithName:@"Arial" size:9]];
+        //        venuePlace.adjustsFontSizeToFitWidth=YES;
+//        restaurantRating.text = @"5 star";
+//        restaurantRating.clipsToBounds = YES;
+        [viewCell addSubview:restaurantRating];
+        
+        restaurantAddress = [[UILabel alloc] initWithFrame:CGRectMake(65, 45, 180, 12)];
+        [restaurantAddress setFont:[UIFont fontWithName:@"Arial" size:9]];
+        restaurantAddress.textColor = [UIColor blackColor];
+//        restaurantAddress.text = @"100 Ashwood";
+        //        venuePlace.adjustsFontSizeToFitWidth=YES;
+        [viewCell addSubview:restaurantAddress];
+        
+        frontArrow = [[UIImageView alloc] initWithFrame:CGRectMake(270, 25, 20, 20)];
+        frontArrow.clipsToBounds = YES;
+        frontArrow.image = [UIImage imageNamed:@"arrow"];
+        [viewCell addSubview:frontArrow];
         
     }
     return self;
 }
+
+-(void)setInfo:(NSDictionary *)info
+{
+    _info = info;
+    NSLog(@"dictionary in the cell is %@",info);
+    
+    NSURL *url = [NSURL URLWithString:info[@"image"]];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [UIImage imageWithData:data];
+    restaurantImage.image = image;
+    
+    restaurantName.text = info[@"name"];
+    
+    NSURL *url1 = [NSURL URLWithString:info[@"rating"]];
+    NSData *data1 = [NSData dataWithContentsOfURL:url1];
+    UIImage *image1 = [UIImage imageWithData:data1];
+    restaurantRating.image= image1;
+    
+//    restaurantAddress.text = info[@"address"];
+    
+}
+                                 
+                                 
+
+
+
+
+
+
+
+
+
 
 - (void)awakeFromNib
 {

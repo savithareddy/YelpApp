@@ -24,7 +24,6 @@
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:mainVC];
     self.window.rootViewController = navVC;
     self.window.backgroundColor = [UIColor whiteColor];
-    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -44,11 +43,6 @@
     [SpeechKit setEarcon:earconStart forType:SKStartRecordingEarconType];
     [SpeechKit setEarcon:earconStop forType:SKStopRecordingEarconType];
     [SpeechKit setEarcon:earconCancel forType:SKCancelRecordingEarconType];
-}
-
--(void) userCurrentLocation
-{
-    
 }
 
 
