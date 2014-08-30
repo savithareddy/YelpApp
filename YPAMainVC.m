@@ -54,11 +54,11 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
         textConvert.alpha = 0.5;
         [self.view addSubview:textConvert];
         
-        micButton = [[UIButton alloc] initWithFrame:CGRectMake(270, 83, 30, 30)];
-        micButton.layer.cornerRadius = 15;
-        micButton.backgroundColor = [UIColor lightGrayColor];
-        [micButton setBackgroundImage:[UIImage imageNamed:@"mic"] forState:UIControlStateNormal];
-//        [micButton setImage:[UIImage imageNamed:@"mic"] forState:UIControlStateNormal];
+        micButton = [[UIButton alloc] initWithFrame:CGRectMake(270, 80, 40, 40)];
+//        micButton.layer.cornerRadius = 20;
+//        micButton.backgroundColor = [UIColor lightGrayColor];
+//        [micButton setBackgroundImage:[UIImage imageNamed:@"mic"] forState:UIControlStateNormal];
+        [micButton setImage:[UIImage imageNamed:@"mic"] forState:UIControlStateNormal];
         [micButton addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
 //        [micButton sizeToFit];
         [self.view addSubview:micButton];
@@ -107,6 +107,18 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     cell.info = tableArray[indexPath.row];
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIViewController *viewCtrl = [[UIViewController alloc] init];
+    UIWebView *webView = [[UIWebView alloc] init];
+    viewCtrl.view = webView;
+    [self.navigationController pushViewController:viewCtrl animated:YES];
+//    NSLog(@"url in mainVC is %@",[tableArray valueForKey:@"yelp"]);
+    NSDictionary *mainDict = tableArray[indexPath.row];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:mainDict[@"yelp"]]]];
+    
 }
 
 

@@ -29,7 +29,9 @@
 
 -(void)searchYelpNearbyPlaces:(NSString *)categoryFilter atLatitude:(CLLocationDegrees)currentLatitude atLongitude:(CLLocationDegrees)currentLongitude
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@?term=%@&categoty_filter=%@&ll=%f,%f",YELP_SEARCH_URL,@"restaurants",categoryFilter,currentLatitude,currentLongitude];
+    NSString *urlString = [NSString stringWithFormat:@"%@?term=%@&categoty_filter=%@&ll=%f,%f",YELP_SEARCH_URL,@"",categoryFilter,currentLatitude,currentLongitude];
+    
+
     NSURL *url = [NSURL URLWithString:urlString];
     
     OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY secret:OAUTH_CONSUMER_SECRET];
@@ -101,6 +103,7 @@
                 NSString *name =  dictionary[@"name"];
                 NSString *thumbURL = dictionary[@"image_url"];
                 NSString *ratingURL = dictionary[@"rating_img_url"];
+                NSString *yelpURL = dictionary[@"url"];
 //                NSString *addressString1 = dictionary[@"location"][@"display_address"];
 //                NSString *addressString2 = dictionary[@"address"];
 //                NSString *joinString = [NSString stringWithFormat:@"%@,%@",addressString1,addressString2];
@@ -109,6 +112,7 @@
                 [finalDict setObject:name forKey:@"name"];
                  [finalDict setObject:thumbURL forKey:@"image"];
                  [finalDict setObject:ratingURL forKey:@"rating"];
+                [finalDict setObject:yelpURL forKey:@"yelp"];
 //                 [finalDict setObject:addressString1 forKey:@"address"];
                 
                 [array addObject:finalDict];
