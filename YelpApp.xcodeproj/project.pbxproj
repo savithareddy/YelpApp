@@ -34,7 +34,6 @@
 		9145E6C319AD89FE00530763 /* mic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145E6C219AD89FE00530763 /* mic.png */; };
 		9177CEBD19AF6FB500A0586B /* YPAYelpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177CEBC19AF6FB500A0586B /* YPAYelpRequest.m */; };
 		9177CED019AFBF6700A0586B /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9177CECF19AFBF6700A0586B /* arrow.png */; };
-		9177CF1B19AFC50B00A0586B /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177CF1A19AFC50B00A0586B /* Restaurant.m */; };
 		9177CF1E19AFC51C00A0586B /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177CF1D19AFC51C00A0586B /* OAConsumer.m */; };
 		9177CF2119AFC52600A0586B /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177CF2019AFC52600A0586B /* OAHMAC_SHA1SignatureProvider.m */; };
 		9177CF2419AFC52F00A0586B /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177CF2319AFC52F00A0586B /* OAMutableURLRequest.m */; };
@@ -94,8 +93,6 @@
 		9177CEBB19AF6FB500A0586B /* YPAYelpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YPAYelpRequest.h; path = ../YPAYelpRequest.h; sourceTree = "<group>"; };
 		9177CEBC19AF6FB500A0586B /* YPAYelpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YPAYelpRequest.m; path = ../YPAYelpRequest.m; sourceTree = "<group>"; };
 		9177CECF19AFBF6700A0586B /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
-		9177CF1919AFC50B00A0586B /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
-		9177CF1A19AFC50B00A0586B /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		9177CF1C19AFC51C00A0586B /* OAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAConsumer.h; sourceTree = "<group>"; };
 		9177CF1D19AFC51C00A0586B /* OAConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAConsumer.m; sourceTree = "<group>"; };
 		9177CF1F19AFC52600A0586B /* OAHMAC_SHA1SignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHMAC_SHA1SignatureProvider.h; sourceTree = "<group>"; };
@@ -283,8 +280,6 @@
 				9177CF2019AFC52600A0586B /* OAHMAC_SHA1SignatureProvider.m */,
 				9177CF1C19AFC51C00A0586B /* OAConsumer.h */,
 				9177CF1D19AFC51C00A0586B /* OAConsumer.m */,
-				9177CF1919AFC50B00A0586B /* Restaurant.h */,
-				9177CF1A19AFC50B00A0586B /* Restaurant.m */,
 			);
 			name = Misc.;
 			sourceTree = "<group>";
@@ -392,7 +387,6 @@
 			files = (
 				9177CF2F19AFC55200A0586B /* hmac.c in Sources */,
 				9177CEBD19AF6FB500A0586B /* YPAYelpRequest.m in Sources */,
-				9177CF1B19AFC50B00A0586B /* Restaurant.m in Sources */,
 				9177CF2119AFC52600A0586B /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				9177CF3919AFC56B00A0586B /* NSURL+Base.m in Sources */,
 				9177CF3019AFC55200A0586B /* sha1.c in Sources */,

@@ -18,7 +18,7 @@
 #import "OASignatureProviding.h"
 #import "OAHMAC_SHA1SignatureProvider.h"
 #import "OAMutableURLRequest.h"
-#import  "Restaurant.h"
+//#import  "Restaurant.h"
 
 @implementation YPAYelpRequest
 {

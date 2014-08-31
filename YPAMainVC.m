@@ -121,11 +121,10 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     
 }
 
-
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     currentLocation= [locations firstObject];
-    NSLog(@"current location is %@",currentLocation);
+//    NSLog(@"current location is %@",currentLocation);
     [lManager stopUpdatingLocation];
 }
 
@@ -243,18 +242,12 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     
     tableArray = [dataArray mutableCopy];
     [customTableView reloadData];
-//    [self.delegate arrayFromMainVC:dataArray];
-//    self.arrayFromMainVC = [dataArray mutableCopy];
-//    NSLog(@"array in main Vc is %@", self.arrayFromMainVC);
 
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    
 }
 
 
