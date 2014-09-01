@@ -45,6 +45,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     if (self) {
         
         self.view.backgroundColor = [UIColor clearColor];
+//        self.view.alpha = 0.2;
         self.navigationItem.title = @"Nearby Restaurants";
         textConvert = [[UITextField alloc] initWithFrame:CGRectMake(20, 80, 240, 40)];
         textConvert.borderStyle = UIBarButtonItemStyleDone;
@@ -75,6 +76,8 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
         [lManager startUpdatingLocation];
         
         customTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 160, 320, SCREEN_HEIGHT-160) style:UITableViewStylePlain];
+//        customTableView.backgroundColor = [UIColor blueColor];
+//        customTableView.alpha = 0.2;
         customTableView.delegate = self;
         customTableView.dataSource = self;
         customTableView.rowHeight = 65;
@@ -119,6 +122,11 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     NSDictionary *mainDict = tableArray[indexPath.row];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:mainDict[@"yelp"]]]];
     
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations

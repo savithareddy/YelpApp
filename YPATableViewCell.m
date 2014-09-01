@@ -22,7 +22,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         UIView *viewCell = [[UIView alloc] initWithFrame:CGRectMake(10, 5, SCREEN_WIDTH-20, 60)];
-        viewCell.backgroundColor = [UIColor lightGrayColor];
+//        viewCell.backgroundColor = [UIColor lightGrayColor];
 //        viewCell.alpha = 0.5;
         viewCell.layer.cornerRadius = 5;
         [self.contentView addSubview:viewCell];
@@ -46,7 +46,7 @@
 //        restaurantRating.clipsToBounds = YES;
         [viewCell addSubview:restaurantRating];
         
-        restaurantAddress = [[UILabel alloc] initWithFrame:CGRectMake(65, 45, 180, 12)];
+        restaurantAddress = [[UILabel alloc] initWithFrame:CGRectMake(65, 43, 200, 12)];
         [restaurantAddress setFont:[UIFont fontWithName:@"Arial" size:9]];
         restaurantAddress.textColor = [UIColor blackColor];
 //        restaurantAddress.text = @"100 Ashwood";
@@ -79,7 +79,12 @@
     UIImage *image1 = [UIImage imageWithData:data1];
     restaurantRating.image= image1;
     
-//    restaurantAddress.text = info[@"address"];
+    NSString *string = info[@"address"];
+    NSLog(@"address string in the cell is %@",string);
+//     NSString *resultString = [[string stringByReplacingOccurrencesOfString:@"(" withString:@"" ] stringByReplacingOccurrencesOfString:@")" withString:@""];
+//    NSLog(@"address result string is %@",resultString);
+    restaurantAddress.text = string;
+
     
 }
                                  
