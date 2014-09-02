@@ -45,6 +45,7 @@
 		9177CF3619AFC55C00A0586B /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177CF3419AFC55C00A0586B /* NSString+URLEncoding.m */; };
 		9177CF3919AFC56B00A0586B /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177CF3819AFC56B00A0586B /* NSURL+Base.m */; };
 		9177CF3D19AFC7BA00A0586B /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 9177CF3B19AFC7BA00A0586B /* Base64Transcoder.c */; };
+		9181E66819B438AD00F6D189 /* Yelp_Background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9181E66A19B438AD00F6D189 /* Yelp_Background@2x.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		9177CF3A19AFC5B800A0586B /* OASignatureProviding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OASignatureProviding.h; sourceTree = "<group>"; };
 		9177CF3B19AFC7BA00A0586B /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
 		9177CF3C19AFC7BA00A0586B /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		9181E66919B438AD00F6D189 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = "en.lproj/Yelp_Background@2x.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 		9145E6C419AD8A1400530763 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9181E66A19B438AD00F6D189 /* Yelp_Background@2x.jpg */,
 				9177CECF19AFBF6700A0586B /* arrow.png */,
 				9145E6C219AD89FE00530763 /* mic.png */,
 			);
@@ -363,6 +366,7 @@
 				9145E6C319AD89FE00530763 /* mic.png in Resources */,
 				9145E69B19AD4C0400530763 /* InfoPlist.strings in Resources */,
 				913492F319AEADD30054BE8C /* earcon_done_listening.wav in Resources */,
+				9181E66819B438AD00F6D189 /* Yelp_Background@2x.jpg in Resources */,
 				913492F219AEADD30054BE8C /* earcon_cancel.wav in Resources */,
 				913492F419AEADD30054BE8C /* earcon_listening.wav in Resources */,
 				9177CED019AFBF6700A0586B /* arrow.png in Resources */,
@@ -438,6 +442,14 @@
 				9145E6B319AD4C0500530763 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9181E66A19B438AD00F6D189 /* Yelp_Background@2x.jpg */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9181E66919B438AD00F6D189 /* en */,
+			);
+			name = "Yelp_Background@2x.jpg";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

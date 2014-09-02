@@ -56,7 +56,7 @@
         frontArrow = [[UIImageView alloc] initWithFrame:CGRectMake(270, 25, 20, 20)];
         frontArrow.clipsToBounds = YES;
         frontArrow.image = [UIImage imageNamed:@"arrow"];
-        [viewCell addSubview:frontArrow];
+//        [viewCell addSubview:frontArrow];
         
     }
     return self;

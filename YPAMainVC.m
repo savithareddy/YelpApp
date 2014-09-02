@@ -17,7 +17,7 @@
 #import "YPATableViewCell.h"
 
 
-@interface YPAMainVC () <SpeechKitDelegate,SKRecognizerDelegate,CLLocationManagerDelegate,YPAYelpRequestDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface YPAMainVC () <SpeechKitDelegate,SKRecognizerDelegate,CLLocationManagerDelegate,YPAYelpRequestDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic) SKRecognizer *SpeechRecognizer;
 @property (nonatomic) UIActivityIndicatorView *activityIndicator;
@@ -44,15 +44,16 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        self.view.backgroundColor = [UIColor clearColor];
-//        self.view.alpha = 0.2;
+        self.view.backgroundColor = [UIColor colorWithRed:0.0 green:1.0 blue:1.0 alpha:0.2];
         self.navigationItem.title = @"Nearby Restaurants";
         textConvert = [[UITextField alloc] initWithFrame:CGRectMake(20, 80, 240, 40)];
         textConvert.borderStyle = UIBarButtonItemStyleDone;
-        textConvert.layer.borderColor = [UIColor redColor].CGColor;
+//        textConvert.layer.borderColor = [UIColor redColor].CGColor;
         textConvert.layer.cornerRadius = 3;
-        textConvert.backgroundColor = [UIColor lightGrayColor];
+        textConvert.backgroundColor = [UIColor clearColor];
+//        textConvert.backgroundColor = [UIColor lightGrayColor];
         textConvert.alpha = 0.5;
+        textConvert.delegate = self;
         [self.view addSubview:textConvert];
         
         micButton = [[UIButton alloc] initWithFrame:CGRectMake(270, 80, 40, 40)];
@@ -76,7 +77,8 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
         [lManager startUpdatingLocation];
         
         customTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 160, 320, SCREEN_HEIGHT-160) style:UITableViewStylePlain];
-//        customTableView.backgroundColor = [UIColor blueColor];
+//        customTableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Yelp_Background.jpg"]];
+        customTableView.backgroundColor = [UIColor colorWithRed:0.0 green:0.8 blue:1.0 alpha:0.0];
 //        customTableView.alpha = 0.2;
         customTableView.delegate = self;
         customTableView.dataSource = self;
@@ -95,6 +97,12 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = YES;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [tableArray count];
@@ -108,6 +116,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     }
     //    cell.textLabel.text = tableArray[indexPath.row];
     cell.info = tableArray[indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
@@ -251,6 +260,12 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     tableArray = [dataArray mutableCopy];
     [customTableView reloadData];
 
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
