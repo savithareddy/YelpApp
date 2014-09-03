@@ -162,6 +162,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
 
 -(void) startRecording : (UIButton *) sender
 {
+    
     NSLog(@" Recording started ");
     sender.selected = !sender.selected;
     if ([sender isSelected]) {

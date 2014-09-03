@@ -29,7 +29,7 @@
 
 -(void)searchYelpNearbyPlaces:(NSString *)categoryFilter atLatitude:(CLLocationDegrees)currentLatitude atLongitude:(CLLocationDegrees)currentLongitude
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@?term=%@&categoty_filter=%@&ll=%f,%f",YELP_SEARCH_URL,@"food",categoryFilter,currentLatitude,currentLongitude];
+    NSString *urlString = [NSString stringWithFormat:@"%@?term=%@&categoty_filter=%@,Indian&ll=%f,%f",YELP_SEARCH_URL,@"food",categoryFilter,currentLatitude,currentLongitude];
     
 
     NSURL *url = [NSURL URLWithString:urlString];
