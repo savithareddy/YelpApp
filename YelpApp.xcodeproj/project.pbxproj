@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		913492ED19AEA9A20054BE8C /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 913492EC19AEA9A20054BE8C /* SpeechKit.framework */; };
 		913492F219AEADD30054BE8C /* earcon_cancel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 913492EF19AEADD30054BE8C /* earcon_cancel.wav */; };
 		913492F319AEADD30054BE8C /* earcon_done_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 913492F019AEADD30054BE8C /* earcon_done_listening.wav */; };
 		913492F419AEADD30054BE8C /* earcon_listening.wav in Resources */ = {isa = PBXBuildFile; fileRef = 913492F119AEADD30054BE8C /* earcon_listening.wav */; };
@@ -32,6 +31,7 @@
 		9145E6B619AD4C0500530763 /* YelpAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9145E6B519AD4C0500530763 /* YelpAppTests.m */; };
 		9145E6C119AD4C1E00530763 /* YPAMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9145E6C019AD4C1E00530763 /* YPAMainVC.m */; };
 		9145E6C319AD89FE00530763 /* mic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145E6C219AD89FE00530763 /* mic.png */; };
+		914E790A19B810F400843604 /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914E790919B810F400843604 /* SpeechKit.framework */; };
 		9177CEBD19AF6FB500A0586B /* YPAYelpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177CEBC19AF6FB500A0586B /* YPAYelpRequest.m */; };
 		9177CED019AFBF6700A0586B /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9177CECF19AFBF6700A0586B /* arrow.png */; };
 		9177CF1E19AFC51C00A0586B /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9177CF1D19AFC51C00A0586B /* OAConsumer.m */; };
@@ -59,7 +59,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		913492EC19AEA9A20054BE8C /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpeechKit.framework; path = ../All_iOS_Projects/Hackathon_Forge/SpeechKit.framework; sourceTree = "<group>"; };
 		913492EF19AEADD30054BE8C /* earcon_cancel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_cancel.wav; sourceTree = "<group>"; };
 		913492F019AEADD30054BE8C /* earcon_done_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_done_listening.wav; sourceTree = "<group>"; };
 		913492F119AEADD30054BE8C /* earcon_listening.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earcon_listening.wav; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		9145E6BF19AD4C1E00530763 /* YPAMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YPAMainVC.h; path = ../YPAMainVC.h; sourceTree = "<group>"; };
 		9145E6C019AD4C1E00530763 /* YPAMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YPAMainVC.m; path = ../YPAMainVC.m; sourceTree = "<group>"; };
 		9145E6C219AD89FE00530763 /* mic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mic.png; path = ../mic.png; sourceTree = "<group>"; };
+		914E790919B810F400843604 /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpeechKit.framework; sourceTree = "<group>"; };
 		9177CEBB19AF6FB500A0586B /* YPAYelpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YPAYelpRequest.h; path = ../YPAYelpRequest.h; sourceTree = "<group>"; };
 		9177CEBC19AF6FB500A0586B /* YPAYelpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YPAYelpRequest.m; path = ../YPAYelpRequest.m; sourceTree = "<group>"; };
 		9177CECF19AFBF6700A0586B /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -128,9 +128,9 @@
 				9134930719AED3AD0054BE8C /* QuartzCore.framework in Frameworks */,
 				9134930219AEC5CE0054BE8C /* SystemConfiguration.framework in Frameworks */,
 				9134930019AEC5B40054BE8C /* Security.framework in Frameworks */,
+				914E790A19B810F400843604 /* SpeechKit.framework in Frameworks */,
 				913492F819AEB77E0054BE8C /* AVFoundation.framework in Frameworks */,
 				913492F619AEB4AB0054BE8C /* CoreLocation.framework in Frameworks */,
-				913492ED19AEA9A20054BE8C /* SpeechKit.framework in Frameworks */,
 				9145E69319AD4C0400530763 /* CoreGraphics.framework in Frameworks */,
 				9145E69519AD4C0400530763 /* UIKit.framework in Frameworks */,
 				9145E69119AD4C0400530763 /* Foundation.framework in Frameworks */,
@@ -183,12 +183,12 @@
 		9145E68F19AD4C0400530763 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				914E790919B810F400843604 /* SpeechKit.framework */,
 				9134930619AED3AD0054BE8C /* QuartzCore.framework */,
 				9134930119AEC5CE0054BE8C /* SystemConfiguration.framework */,
 				913492FF19AEC5B40054BE8C /* Security.framework */,
 				913492F719AEB77E0054BE8C /* AVFoundation.framework */,
 				913492F519AEB4AB0054BE8C /* CoreLocation.framework */,
-				913492EC19AEA9A20054BE8C /* SpeechKit.framework */,
 				9145E69019AD4C0400530763 /* Foundation.framework */,
 				9145E69219AD4C0400530763 /* CoreGraphics.framework */,
 				9145E69419AD4C0400530763 /* UIKit.framework */,
@@ -535,6 +535,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/savithareddy/Documents/All_iOS_Projects/Hackathon_Forge,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YelpApp/YelpApp-Prefix.pch";
@@ -552,6 +553,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/savithareddy/Documents/All_iOS_Projects/Hackathon_Forge,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YelpApp/YelpApp-Prefix.pch";

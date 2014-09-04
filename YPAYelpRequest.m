@@ -106,7 +106,11 @@
                 NSString *yelpURL = dictionary[@"url"];
                 
                 NSString *addressString1 = [dictionary[@"location"][@"display_address"] componentsJoinedByString:@","];
-//                NSString *addressString1 = dictionary[@"location"];
+                NSString *cate = [dictionary[@"categories"]componentsJoinedByString:@","];
+                NSCharacterSet *deLimiters = [NSCharacterSet characterSetWithCharactersInString:@"\"()\n"];
+                NSString *splitString = [cate stringByTrimmingCharactersInSet:deLimiters];
+//                NSString *categoryString = [splitString objectAtIndex:1];
+//                NSLog(@"String is %@",splitString);
 //                NSString *joinString = [NSString stringWithFormat:@"%@,%@",addressString1,addressString2];
                 
                
@@ -116,6 +120,7 @@
                  [finalDict setObject:ratingURL forKey:@"rating"];
                 [finalDict setObject:yelpURL forKey:@"yelp"];
                  [finalDict setObject:addressString1 forKey:@"address"];
+                [finalDict setObject:splitString forKey:@"category"];
                 
                 [array addObject:finalDict];
                 NSLog(@"Array at the yelp is %@ ",array);

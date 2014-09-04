@@ -44,7 +44,8 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        self.view.backgroundColor = [UIColor colorWithRed:0.0 green:1.0 blue:1.0 alpha:0.2];
+//        self.view.backgroundColor = [UIColor colorWithRed:0.0 green:1.0 blue:1.0 alpha:0.2];
+        self.view.backgroundColor = [UIColor clearColor];
         self.navigationItem.title = @"Nearby Restaurants";
         textConvert = [[UITextField alloc] initWithFrame:CGRectMake(20, 80, 240, 40)];
         textConvert.borderStyle = UIBarButtonItemStyleDone;
