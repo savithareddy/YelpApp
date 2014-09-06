@@ -66,7 +66,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
 //        [micButton sizeToFit];
         [self.view addSubview:micButton];
         
-        recordText = [[UILabel alloc] initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH-20, 30)];
+         recordText = [[UILabel alloc] initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH-20, 30)];
         recordText.text = @"Tap mic to start recording";
         [recordText setFont: [UIFont fontWithName:@"Arial" size:12]];
         recordText.textColor = [UIColor darkGrayColor];
@@ -166,6 +166,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     
     NSLog(@" Recording started ");
     sender.selected = !sender.selected;
+    textConvert.text = @"";
     if ([sender isSelected]) {
         self.SpeechRecognizer = [[SKRecognizer alloc] initWithType:SKSearchRecognizerType detection:SKShortEndOfSpeechDetection language:@"en_US" delegate:self];
     }else if (self.SpeechRecognizer)
