@@ -128,7 +128,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
     UIWebView *webView = [[UIWebView alloc] init];
     viewCtrl.view = webView;
     [self.navigationController pushViewController:viewCtrl animated:YES];
-//    NSLog(@"url in mainVC is %@",[tableArray valueForKey:@"yelp"]);
+    NSLog(@"url in mainVC is %@",[tableArray valueForKey:@"yelp"]);
     NSDictionary *mainDict = tableArray[indexPath.row];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:mainDict[@"yelp"]]]];
     
@@ -207,7 +207,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
 -(void)recognizer:(SKRecognizer *)recognizer didFinishWithError:(NSError *)error suggestion:(NSString *)suggestion
 {
     micButton.selected = NO;
-//    self.activityIndicator.hidden = YES;
+    self.activityIndicator.hidden = YES;
     recordText.text = @"Connection Error";
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
