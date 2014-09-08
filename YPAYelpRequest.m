@@ -91,14 +91,6 @@
     if (dict && [dict count] > 0 ) {
         if ([dict objectForKey:@"businesses"] && [[dict objectForKey:@"businesses"] count] > 0) {
             for (NSDictionary *dictionary in [dict objectForKey:@"businesses"]) {
-//                Restaurant *restaurantObj = [[Restaurant alloc] init];
-//                restaurantObj.name  = [resultDict objectForKey:@"name"];
-//                restaurantObj.thumbURL= [resultDict objectForKey:@"image_url"];
-//                restaurantObj.ratingURL = [resultDict objectForKey:@"rating_img_url"];
-////                restaurantObj.yelpURL= [resultDict objectForKey:@"url"];
-//                restaurantObj.address = [[[resultDict objectForKey:@"location"] objectForKey:@"address"] componentsJoinedByString:@", "];
-//                [array addObject:resultDict];
-//                NSLog(@"Array at the yelp is %@ ",array);
                 
                 NSString *name =  dictionary[@"name"];
                 NSString *thumbURL = dictionary[@"image_url"];

@@ -12,6 +12,7 @@
 {
     UIImageView *restaurantImage;
     UILabel *restaurantName;
+    UILabel *restaurantCategory;
     UIImageView *restaurantRating;
     UILabel *restaurantAddress;
     UIImageView *frontArrow;
@@ -33,25 +34,33 @@
         restaurantImage.clipsToBounds = YES;
         [viewCell addSubview:restaurantImage];
         
-        restaurantName = [[UILabel alloc] initWithFrame:CGRectMake(65, 10, 200, 15)];
+        restaurantName = [[UILabel alloc] initWithFrame:CGRectMake(65, 5, 200, 15)];
         [restaurantName setFont:[UIFont fontWithName:@"Arial" size:15.0f]];
         restaurantName.textColor = [UIColor blueColor];
 //        restaurantName.text = @"Restaurant";
         [viewCell addSubview:restaurantName];
         
-        restaurantRating = [[UIImageView alloc] initWithFrame:CGRectMake(65, 27, 50, 12)];
+        restaurantAddress = [[UILabel alloc] initWithFrame:CGRectMake(65, 21, 200, 12)];
+        [restaurantAddress setFont:[UIFont fontWithName:@"Arial" size:9]];
+        restaurantAddress.textColor = [UIColor blackColor];
+        //        restaurantAddress.text = @"100 Ashwood";
+        //        venuePlace.adjustsFontSizeToFitWidth=YES;
+        [viewCell addSubview:restaurantAddress];
+
+        
+        restaurantCategory = [[UILabel alloc] initWithFrame:CGRectMake(60, 34, 200, 12)];
+        [restaurantCategory setFont:[UIFont fontWithName:@"Arial" size:9]];
+        restaurantCategory.textColor = [UIColor blackColor];
+        //        restaurantName.text = @"Restaurant";
+        [viewCell addSubview:restaurantCategory];
+        
+        restaurantRating = [[UIImageView alloc] initWithFrame:CGRectMake(65, 47, 50, 12)];
 //        [restaurantRating setFont:[UIFont fontWithName:@"Arial" size:9]];
         //        venuePlace.adjustsFontSizeToFitWidth=YES;
 //        restaurantRating.text = @"5 star";
 //        restaurantRating.clipsToBounds = YES;
         [viewCell addSubview:restaurantRating];
         
-        restaurantAddress = [[UILabel alloc] initWithFrame:CGRectMake(65, 43, 200, 12)];
-        [restaurantAddress setFont:[UIFont fontWithName:@"Arial" size:9]];
-        restaurantAddress.textColor = [UIColor blackColor];
-//        restaurantAddress.text = @"100 Ashwood";
-        //        venuePlace.adjustsFontSizeToFitWidth=YES;
-        [viewCell addSubview:restaurantAddress];
         
         frontArrow = [[UIImageView alloc] initWithFrame:CGRectMake(270, 25, 20, 20)];
         frontArrow.clipsToBounds = YES;
@@ -73,6 +82,8 @@
     restaurantImage.image = image;
     
     restaurantName.text = info[@"name"];
+    
+   restaurantCategory.text = info[@"category"];
     
     NSURL *url1 = [NSURL URLWithString:info[@"rating"]];
     NSData *data1 = [NSData dataWithContentsOfURL:url1];
