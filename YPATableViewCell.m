@@ -50,7 +50,7 @@
         
         restaurantCategory = [[UILabel alloc] initWithFrame:CGRectMake(60, 34, 200, 12)];
         [restaurantCategory setFont:[UIFont fontWithName:@"Arial" size:9]];
-        restaurantCategory.textColor = [UIColor blackColor];
+        restaurantCategory.textColor = [UIColor orangeColor];
         //        restaurantName.text = @"Restaurant";
         [viewCell addSubview:restaurantCategory];
         
@@ -83,7 +83,9 @@
     
     restaurantName.text = info[@"name"];
     
-   restaurantCategory.text = info[@"category"];
+   NSString *stringAddress = info[@"category"];
+    NSString *stringAddressOne = [stringAddress stringByReplacingOccurrencesOfString:@"\"" withString:@" "];
+    restaurantCategory.text = stringAddressOne;
     
     NSURL *url1 = [NSURL URLWithString:info[@"rating"]];
     NSData *data1 = [NSData dataWithContentsOfURL:url1];
