@@ -257,7 +257,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
 
 -(void)loadResultWithDataArray:(NSArray *)dataArray
 {
-    recordText.text = @" Tap on the mic";
+     recordText.text = @" Tap on the mic";
     self.activityIndicator.hidden = YES;
     
     tableArray = [dataArray mutableCopy];
