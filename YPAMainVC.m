@@ -84,6 +84,8 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
         customTableView.delegate = self;
         customTableView.dataSource = self;
         customTableView.rowHeight = 65;
+        
+        
         customTableView.separatorColor = [UIColor clearColor];
         customTableView.sectionFooterHeight = 22;
         customTableView.sectionHeaderHeight = 22;
