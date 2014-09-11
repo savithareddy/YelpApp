@@ -53,7 +53,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
         textConvert.layer.cornerRadius = 3;
         textConvert.backgroundColor = [UIColor clearColor];
 //        textConvert.backgroundColor = [UIColor lightGrayColor];
-        textConvert.alpha = 0.5;
+//        textConvert.alpha = 0.5;
         textConvert.delegate = self;
         [self.view addSubview:textConvert];
         
@@ -66,7 +66,7 @@ const unsigned char SpeechKitApplicationKey[] = {0x99, 0x0a, 0x08, 0xc4, 0xbb, 0
 //        [micButton sizeToFit];
         [self.view addSubview:micButton];
         
-         recordText = [[UILabel alloc] initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH-20, 30)];
+        recordText = [[UILabel alloc] initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH-20, 30)];
         recordText.text = @"Tap mic to start recording";
         [recordText setFont: [UIFont fontWithName:@"Arial" size:12]];
         recordText.textColor = [UIColor darkGrayColor];
